@@ -4,7 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <meta name="theme-color" content="#14180F" />
-<title>Range Finder — Butler County Land</title>
+<title>Homestead Finder — Butler County Land</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -12,158 +12,142 @@
   :root{
     --bg:#14180F; --surface:#1E241A; --surface2:#28301F;
     --ink:#ECE9DD; --muted:#9AA08C; --line:#3A4230;
-    --blaze:#FF6A13; --blaze-dim:#C9540F; --moss:#8A9A53;
-    --good:#9ec46a; --warn:#E4B23B;
+    --blaze:#FF6A13; --moss:#8A9A53; --good:#9ec46a; --warn:#E4B23B; --gold:#D9A441; --tan:#B9A77E; --water:#5C97B0;
     --r:14px;
   }
   *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-  html,body{margin:0;background:var(--bg);color:var(--ink);
-    font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
-    font-size:16px;line-height:1.45}
+  html,body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;font-size:16px;line-height:1.45}
   body{padding-bottom:90px}
-  .mono{font-family:"Roboto Mono",ui-monospace,monospace}
-  h1,h2,h3,.disp{font-family:"Oswald",sans-serif;font-weight:600;letter-spacing:.02em;margin:0}
+  h1,h2,h3{font-family:"Oswald",sans-serif;font-weight:600;letter-spacing:.02em;margin:0}
 
-  /* header */
-  header{position:relative;overflow:hidden;border-bottom:1px solid var(--line);
-    padding:22px 18px 18px;background:linear-gradient(160deg,#1b2114,#14180F)}
+  header{position:relative;overflow:hidden;border-bottom:1px solid var(--line);padding:22px 18px 16px;background:linear-gradient(160deg,#1b2114,#14180F)}
   header svg{position:absolute;inset:0;width:100%;height:100%;opacity:.16;pointer-events:none}
   .brand{position:relative;display:flex;align-items:baseline;gap:10px}
   .brand h1{font-size:30px;text-transform:uppercase;line-height:.95}
-  .brand .dot{width:11px;height:11px;border-radius:50%;background:var(--blaze);
-    box-shadow:0 0 0 4px rgba(255,106,19,.18);align-self:center}
+  .brand .dot{width:11px;height:11px;border-radius:50%;background:var(--blaze);box-shadow:0 0 0 4px rgba(255,106,19,.18);align-self:center}
   header p{position:relative;margin:6px 0 0;color:var(--muted);font-size:13.5px;max-width:46ch}
+  .htools{position:relative;display:flex;gap:8px;margin-top:12px}
+  .htools button{background:var(--surface2);border:1px solid var(--line);color:var(--ink);border-radius:9px;padding:7px 12px;font-size:12.5px;font-family:inherit;cursor:pointer;display:flex;align-items:center;gap:6px}
+  .htools .syncdot{width:8px;height:8px;border-radius:50%;background:var(--muted)}
+  .htools .syncdot.on{background:var(--good)} .htools .syncdot.err{background:var(--warn)}
 
   main{padding:16px 14px 0;max-width:760px;margin:0 auto}
-
-  .panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);
-    padding:14px;margin-bottom:14px}
-  .panel h2{font-size:14px;text-transform:uppercase;color:var(--muted);
-    letter-spacing:.12em;font-weight:500;margin-bottom:10px}
-
-  .row{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+  .panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:14px;margin-bottom:14px}
+  .panel h2{font-size:14px;text-transform:uppercase;color:var(--muted);letter-spacing:.12em;font-weight:500;margin-bottom:10px}
+  .rowf{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
   label.fld{display:flex;flex-direction:column;gap:6px;font-size:13px;color:var(--muted)}
-  input[type=number],input[type=text]{background:var(--bg);border:1px solid var(--line);
-    color:var(--ink);border-radius:10px;padding:11px 12px;font-size:16px;width:100%;
-    font-family:"Roboto Mono",monospace}
-  input:focus{outline:2px solid var(--blaze);outline-offset:1px;border-color:transparent}
+  input[type=number],input[type=text]{background:var(--bg);border:1px solid var(--line);color:var(--ink);border-radius:10px;padding:11px 12px;font-size:16px;width:100%;font-family:"Roboto Mono",monospace}
+  input:focus,textarea:focus{outline:2px solid var(--blaze);outline-offset:1px;border-color:transparent}
 
-  .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px;max-height:188px;overflow:auto;
-    padding:2px}
-  .chip{font-size:12.5px;padding:8px 11px;border-radius:999px;border:1px solid var(--line);
-    background:var(--bg);color:var(--muted);cursor:pointer;user-select:none;white-space:nowrap}
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px;max-height:188px;overflow:auto;padding:2px}
+  .chip{font-size:12.5px;padding:8px 11px;border-radius:999px;border:1px solid var(--line);background:var(--bg);color:var(--muted);cursor:pointer;user-select:none;white-space:nowrap}
   .chip.on{background:var(--surface2);color:var(--ink);border-color:var(--moss)}
   .chip.unzoned.on{border-color:var(--warn)}
-  .chip .tag{font-size:9px;text-transform:uppercase;letter-spacing:.08em;color:var(--warn);
-    margin-left:5px;vertical-align:1px}
+  .chip .tag{font-size:9px;text-transform:uppercase;letter-spacing:.08em;color:var(--warn);margin-left:5px;vertical-align:1px}
   .selrow{display:flex;justify-content:space-between;align-items:center;margin-top:10px}
-  .linkbtn{background:none;border:none;color:var(--blaze);font-size:12.5px;cursor:pointer;
-    padding:6px 2px;font-family:inherit}
+  .linkbtn{background:none;border:none;color:var(--blaze);font-size:12.5px;cursor:pointer;padding:6px 2px;font-family:inherit}
 
-  .cta{position:fixed;left:0;right:0;bottom:0;padding:12px 14px calc(12px + env(safe-area-inset-bottom));
-    background:linear-gradient(180deg,rgba(20,24,15,0),var(--bg) 38%);z-index:30}
-  .cta button{width:100%;max-width:760px;margin:0 auto;display:flex;justify-content:center;
-    gap:10px;align-items:center;background:var(--blaze);color:#1a1206;border:none;
-    border-radius:12px;padding:16px;font-family:"Oswald";font-size:18px;font-weight:600;
-    text-transform:uppercase;letter-spacing:.05em;cursor:pointer}
+  .cta{position:fixed;left:0;right:0;bottom:0;padding:12px 14px calc(12px + env(safe-area-inset-bottom));background:linear-gradient(180deg,rgba(20,24,15,0),var(--bg) 38%);z-index:30}
+  .cta button{width:100%;max-width:760px;margin:0 auto;display:flex;justify-content:center;gap:10px;align-items:center;background:var(--blaze);color:#1a1206;border:none;border-radius:12px;padding:16px;font-family:"Oswald";font-size:18px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;cursor:pointer}
   .cta button:disabled{background:var(--surface2);color:var(--muted)}
 
   .status{color:var(--muted);font-size:13px;min-height:20px;margin:2px 2px 12px}
   .status b{color:var(--ink)}
-
   .results-head{display:flex;justify-content:space-between;align-items:center;margin:4px 2px 10px}
   .results-head h2{font-size:16px;text-transform:uppercase}
   .results-head .count{color:var(--blaze);font-family:"Roboto Mono"}
 
-  /* card */
-  .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);
-    margin-bottom:12px;overflow:hidden}
-  .card.contacted{opacity:.62}
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);margin-bottom:12px;overflow:hidden}
+  .card.dead{opacity:.55}
   .chead{display:flex;gap:13px;padding:13px;cursor:pointer;align-items:flex-start}
-  .score{flex:0 0 auto;width:52px;height:52px;border-radius:11px;background:var(--bg);
-    border:1px solid var(--line);display:flex;flex-direction:column;align-items:center;
-    justify-content:center}
+  .score{flex:0 0 auto;width:52px;height:52px;border-radius:11px;background:var(--bg);border:1px solid var(--line);display:flex;flex-direction:column;align-items:center;justify-content:center}
   .score b{font-family:"Oswald";font-size:22px;color:var(--blaze);line-height:1}
   .score span{font-size:8.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em}
   .cmain{flex:1;min-width:0}
   .cmain .ac{font-family:"Oswald";font-size:19px}
   .cmain .ac small{color:var(--muted);font-weight:400;font-size:13px;font-family:system-ui}
-  .cmain .own{font-size:14px;color:var(--ink);white-space:nowrap;overflow:hidden;
-    text-overflow:ellipsis}
+  .cmain .own{font-size:14px;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .cmain .muni{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
   .pills{display:flex;flex-wrap:wrap;gap:6px;margin-top:7px}
-  .pill{font-size:10.5px;text-transform:uppercase;letter-spacing:.05em;padding:3px 7px;
-    border-radius:6px;background:var(--surface2);color:var(--muted)}
+  .pill{font-size:10.5px;text-transform:uppercase;letter-spacing:.05em;padding:3px 7px;border-radius:6px;background:var(--surface2);color:var(--muted)}
   .pill.abs{color:#1a1206;background:var(--blaze)}
   .pill.raw{color:#16210f;background:var(--good)}
+  .pill.house{color:var(--ink);border:1px solid var(--tan);background:transparent}
   .pill.zoned{color:var(--ink);border:1px solid var(--moss);background:transparent}
   .pill.unz{color:var(--warn);border:1px solid var(--warn);background:transparent}
+  .pill.wmu{color:#16210f;background:var(--gold);font-weight:600}
+  .pill.mars{color:var(--ink);border:1px solid var(--moss);background:transparent}
+  .pill.price{color:var(--ink);border:1px solid var(--line);background:var(--bg);font-family:"Roboto Mono"}
+  .pill.water{color:#06212e;background:var(--water);font-weight:600}
+  .pill.glade{color:var(--water);border:1px solid var(--water);background:transparent}
+  .pill.stat{color:#16210f;background:var(--ink);font-weight:600}
 
   .cbody{display:none;padding:0 13px 13px;border-top:1px solid var(--line)}
   .card.open .cbody{display:block}
   .kv{display:grid;grid-template-columns:1fr 1fr;gap:8px 14px;margin:13px 0}
   .kv div{font-size:12.5px;color:var(--muted)}
+  .kv .full{grid-column:1 / -1}
   .kv b{display:block;color:var(--ink);font-family:"Roboto Mono";font-weight:500;font-size:13px}
+  .links{display:flex;gap:9px;margin:0 0 13px}
+  .links a{flex:1;text-align:center;padding:10px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--ink);font-size:13px;text-decoration:none}
   .checklist{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:11px 12px}
-  .checklist .ct{font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--warn);
-    margin-bottom:7px}
+  .checklist .ct{font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--warn);margin-bottom:7px}
   .checklist ul{margin:0;padding-left:17px}
   .checklist li{font-size:12.5px;color:var(--muted);margin:5px 0}
-  .cbtns{display:flex;gap:9px;margin-top:13px}
-  .cbtns button{flex:1;padding:11px;border-radius:10px;border:1px solid var(--line);
-    background:var(--surface2);color:var(--ink);font-size:13.5px;font-family:inherit;cursor:pointer}
+
+  .track{margin:13px 0 0}
+  .track .lbl{font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:7px}
+  .stages{display:flex;flex-wrap:wrap;gap:6px}
+  .stages button{padding:8px 11px;border-radius:8px;border:1px solid var(--line);background:var(--bg);color:var(--muted);font-size:12.5px;font-family:inherit;cursor:pointer}
+  .stages button.on{background:var(--blaze);color:#1a1206;border-color:transparent;font-weight:600}
+  .tnotes{width:100%;min-height:54px;margin-top:9px;background:var(--bg);border:1px solid var(--line);color:var(--ink);border-radius:9px;padding:9px;font-family:inherit;font-size:13px;resize:vertical}
+  .cbtns{display:flex;gap:9px;margin-top:11px}
+  .cbtns button{flex:1;padding:11px;border-radius:10px;border:1px solid var(--line);background:var(--surface2);color:var(--ink);font-size:13.5px;font-family:inherit;cursor:pointer}
   .cbtns button.prim{background:var(--blaze);color:#1a1206;border-color:transparent;font-weight:600}
-  .cbtns button.done{background:transparent;color:var(--good);border-color:var(--good)}
 
   .empty{text-align:center;color:var(--muted);padding:40px 16px;font-size:14px}
 
-  /* modal */
-  .modal{position:fixed;inset:0;background:rgba(8,10,6,.72);display:none;z-index:50;
-    align-items:flex-end;justify-content:center}
+  .modal{position:fixed;inset:0;background:rgba(8,10,6,.72);display:none;z-index:50;align-items:flex-end;justify-content:center}
   .modal.on{display:flex}
-  .sheet{background:var(--surface);width:100%;max-width:760px;max-height:92vh;overflow:auto;
-    border-radius:18px 18px 0 0;border:1px solid var(--line);border-bottom:none;
-    padding:18px 16px calc(18px + env(safe-area-inset-bottom))}
+  .sheet{background:var(--surface);width:100%;max-width:760px;max-height:92vh;overflow:auto;border-radius:18px 18px 0 0;border:1px solid var(--line);border-bottom:none;padding:18px 16px calc(18px + env(safe-area-inset-bottom))}
   .sheet h3{font-size:20px;text-transform:uppercase;margin-bottom:3px}
   .sheet .sub{color:var(--muted);font-size:13px;margin-bottom:14px}
   .me{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px}
-  .me label{grid-column:span 1}
-  .me label.full{grid-column:span 2}
-  textarea{width:100%;min-height:230px;background:var(--bg);border:1px solid var(--line);
-    color:var(--ink);border-radius:10px;padding:13px;font-family:"Roboto Mono";font-size:12.5px;
-    line-height:1.55;resize:vertical}
-  .sheetbtns{display:flex;gap:9px;margin-top:13px}
-  .sheetbtns button{flex:1;padding:14px;border-radius:11px;border:none;font-size:14px;
-    font-family:"Oswald";text-transform:uppercase;letter-spacing:.04em;cursor:pointer}
-  .sheetbtns .copy{background:var(--blaze);color:#1a1206}
-  .sheetbtns .share{background:var(--surface2);color:var(--ink);border:1px solid var(--line)}
+  .me .full{grid-column:span 2}
+  textarea#letterText{width:100%;min-height:230px;background:var(--bg);border:1px solid var(--line);color:var(--ink);border-radius:10px;padding:13px;font-family:"Roboto Mono";font-size:12.5px;line-height:1.55;resize:vertical}
+  .sheetbtns{display:flex;gap:9px;margin-top:13px;flex-wrap:wrap}
+  .sheetbtns button{flex:1;min-width:84px;padding:14px;border-radius:11px;border:none;font-size:14px;font-family:"Oswald";text-transform:uppercase;letter-spacing:.04em;cursor:pointer}
+  .sheetbtns .prim{background:var(--blaze);color:#1a1206}
+  .sheetbtns .sec{background:var(--surface2);color:var(--ink);border:1px solid var(--line)}
   .sheetbtns .close{background:transparent;color:var(--muted);flex:0 0 auto;padding:14px 16px}
 
-  .toast{position:fixed;bottom:96px;left:50%;transform:translateX(-50%) translateY(20px);
-    background:var(--ink);color:#16210f;padding:11px 18px;border-radius:999px;font-size:13.5px;
-    font-weight:600;opacity:0;transition:.25s;z-index:60;pointer-events:none}
-  .toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
+  .olist{display:flex;flex-direction:column;gap:9px}
+  .oitem{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:11px}
+  .oitem .top{display:flex;justify-content:space-between;gap:8px;align-items:baseline}
+  .oitem .own{font-size:14px}
+  .oitem .meta{font-size:11.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin-top:2px}
+  .oitem .nt{font-size:12.5px;color:var(--muted);margin-top:6px;white-space:pre-wrap}
+  .ostat{font-size:10.5px;text-transform:uppercase;letter-spacing:.05em;padding:3px 8px;border-radius:6px;background:var(--surface2);color:var(--ink);white-space:nowrap}
 
-  .spin{display:inline-block;width:13px;height:13px;border:2px solid rgba(255,255,255,.25);
-    border-top-color:var(--blaze);border-radius:50%;animation:sp .7s linear infinite;
-    vertical-align:-2px;margin-right:7px}
+  .toast{position:fixed;bottom:96px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--ink);color:#16210f;padding:11px 18px;border-radius:999px;font-size:13.5px;font-weight:600;opacity:0;transition:.25s;z-index:60;pointer-events:none}
+  .toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
+  .spin{display:inline-block;width:13px;height:13px;border:2px solid rgba(255,255,255,.25);border-top-color:var(--blaze);border-radius:50%;animation:sp .7s linear infinite;vertical-align:-2px;margin-right:7px}
   @keyframes sp{to{transform:rotate(360deg)}}
   @media (prefers-reduced-motion:reduce){.spin{animation:none}.toast{transition:none}}
 </style>
 </head>
 <body>
 <header>
-  <svg viewBox="0 0 400 150" preserveAspectRatio="none" aria-hidden="true">
-    <g fill="none" stroke="#7E8B4F" stroke-width="1">
-      <path d="M-20,120 C60,90 120,140 200,110 C280,80 340,120 420,95"/>
-      <path d="M-20,95 C60,70 130,110 200,85 C270,60 350,95 420,72"/>
-      <path d="M-20,72 C70,52 130,86 200,62 C275,40 345,72 420,52"/>
-      <path d="M-20,50 C70,34 140,64 200,42 C270,22 350,50 420,34"/>
-      <path d="M-20,30 C80,18 140,44 200,26 C270,10 350,30 420,18"/>
-    </g>
-  </svg>
-  <div class="brand"><h1>Range&nbsp;Finder</h1><span class="dot"></span></div>
-  <p>Off-market acreage in southern Butler County, pulled live from county parcel records and ranked against your buying criteria.</p>
+  <svg viewBox="0 0 400 150" preserveAspectRatio="none" aria-hidden="true"><g fill="none" stroke="#7E8B4F" stroke-width="1">
+    <path d="M-20,120 C60,90 120,140 200,110 C280,80 340,120 420,95"/><path d="M-20,95 C60,70 130,110 200,85 C270,60 350,95 420,72"/>
+    <path d="M-20,72 C70,52 130,86 200,62 C275,40 345,72 420,52"/><path d="M-20,50 C70,34 140,64 200,42 C270,22 350,50 420,34"/>
+    <path d="M-20,30 C80,18 140,44 200,26 C270,10 350,30 420,18"/></g></svg>
+  <div class="brand"><h1>Homestead&nbsp;Finder</h1><span class="dot"></span></div>
+  <p>Off-market acreage in southern Butler County — ranked for buildability, hunting (WMU 2B), Mars, water, and budget, from live county records.</p>
+  <div class="htools">
+    <button id="openOutreach">My outreach <span id="outCount" style="color:var(--blaze)"></span></button>
+    <button id="openSync"><span class="syncdot" id="syncDot"></span> Sync</button>
+  </div>
 </header>
 
 <main>
@@ -175,363 +159,421 @@
       <button class="linkbtn" id="selNone">Clear all</button>
     </div>
   </div>
-
   <div class="panel">
     <h2>Filters</h2>
-    <div class="row">
-      <label class="fld" style="flex:1">Minimum acres
-        <input type="number" id="minAcres" value="10" min="1" step="1" inputmode="numeric">
-      </label>
-      <label class="fld" style="flex:1">$/acre benchmark
-        <input type="number" id="benchmark" value="21000" min="0" step="500" inputmode="numeric">
-      </label>
+    <div class="rowf">
+      <label class="fld" style="flex:1">Minimum acres<input type="number" id="minAcres" value="10" min="1" step="1" inputmode="numeric"></label>
+      <label class="fld" style="flex:1">Max budget ($)<input type="number" id="maxBudget" value="600000" min="0" step="25000" inputmode="numeric"></label>
     </div>
+    <div style="color:var(--muted);font-size:11.5px;margin-top:9px">Price is <i>estimated</i> (recent sale, else acres × township rate + assessed building × 16.67). Triage, not an appraisal.</div>
   </div>
 
-  <div class="status" id="status">Pick your townships, then find land. The county data covers size, raw-land, owner and absentee status — slope, access, perc and OGM still need a field check (shown on each result).</div>
+  <div class="status" id="status">Pick your townships, then find land. Institutional owners are filtered out; parcels with a house are included. Slope, access, perc and OGM aren't in county data — each result lists them to verify.</div>
 
-  <div class="results-head" id="rhead" style="display:none">
-    <h2>Candidates</h2><span class="count" id="count"></span>
-  </div>
+  <div class="results-head" id="rhead" style="display:none"><h2>Candidates</h2><span class="count" id="count"></span></div>
   <div id="results"></div>
-  <div id="footnote" style="display:none;color:var(--muted);font-size:11.5px;margin:6px 2px 24px">
-    County GIS lot lines are approximate — good for prospecting, not for closing. Verify everything on the ground and at the Recorder of Deeds.
-  </div>
+  <div id="footnote" style="display:none;color:var(--muted);font-size:11.5px;margin:6px 2px 24px">County lot lines and value estimates are approximate; WMU 2B uses an editable Route 228 line; water is a flag only (verify). Prospect with these, confirm on the ground.</div>
 </main>
 
-<div class="cta">
-  <button id="find">Find land</button>
-</div>
+<div class="cta"><button id="find">Find land</button></div>
 
-<!-- letter sheet -->
-<div class="modal" id="modal">
-  <div class="sheet">
-    <h3>Outreach letter</h3>
-    <div class="sub" id="letterFor"></div>
-    <div class="me">
-      <label class="fld">Your name<input type="text" id="meName" placeholder="Jane Doe"></label>
-      <label class="fld">Phone<input type="text" id="mePhone" placeholder="(724) 555-0143"></label>
-      <label class="fld full">Email<input type="text" id="meEmail" placeholder="jane@email.com"></label>
-    </div>
-    <textarea id="letterText" spellcheck="false"></textarea>
-    <div class="sheetbtns">
-      <button class="copy" id="copyLetter">Copy</button>
-      <button class="share" id="shareLetter">Share</button>
-      <button class="close" id="closeSheet">Close</button>
-    </div>
+<!-- letter -->
+<div class="modal" id="modal"><div class="sheet">
+  <h3>Outreach letter</h3><div class="sub" id="letterFor"></div>
+  <div class="me">
+    <label class="fld">Phone<input type="text" id="mePhone" placeholder="(724) 555-0143"></label>
+    <label class="fld">Email<input type="text" id="meEmail" placeholder="tim@email.com"></label>
   </div>
-</div>
+  <textarea id="letterText" spellcheck="false"></textarea>
+  <div class="sheetbtns">
+    <button class="prim" id="printLetter">Print</button>
+    <button class="sec" id="copyLetter">Copy</button>
+    <button class="sec" id="shareLetter">Share</button>
+    <button class="close" id="closeSheet">Close</button>
+  </div>
+</div></div>
+
+<!-- sync settings -->
+<div class="modal" id="syncModal"><div class="sheet">
+  <h3>Cross-device sync</h3>
+  <div class="sub">Paste your Supabase project URL and anon (publishable) key to sync outreach across devices. Stored only on this device — not in the repo. Leave blank to keep tracking on this device only.</div>
+  <div class="me">
+    <label class="fld full">Supabase URL<input type="text" id="sbUrl" placeholder="https://xxxx.supabase.co"></label>
+    <label class="fld full">Anon key<input type="text" id="sbKey" placeholder="eyJhbGciOi..."></label>
+  </div>
+  <div class="sub" id="syncStatus"></div>
+  <div class="sheetbtns">
+    <button class="prim" id="saveSync">Save &amp; sync</button>
+    <button class="sec" id="clearSync">Use local only</button>
+    <button class="close" id="closeSync">Close</button>
+  </div>
+</div></div>
+
+<!-- my outreach -->
+<div class="modal" id="outreachModal"><div class="sheet">
+  <h3>My outreach</h3><div class="sub" id="outSub"></div>
+  <div class="olist" id="olist"></div>
+  <div class="sheetbtns"><button class="close" id="closeOutreach" style="flex:1">Close</button></div>
+</div></div>
 
 <div class="toast" id="toast"></div>
 
 <script>
 //=====================  CONFIG  =====================
-const SQFT_PER_ACRE = 43560;
-const RAW_BUILDING_MAX = 5000;        // assessed building value => "raw land"
-const QUERY_BUILDING_MAX = 40000;     // server-side cutoff so we don't miss raw land
-const ESTATE_YEARS = 25;
-const LOCAL_ZIPS = new Set(["16001","16002","16003","16033","16037","16053","16059","16066"]);
-const W = {acre:30, raw:25, abs:20, zone:15, ten:10};
+const SQFT_PER_ACRE=43560, ESTATE_YEARS=25, RECENT_SALE_YEARS=7, CLR_FACTOR=16.67;
+const LOCAL_ZIPS=new Set(["16001","16002","16003","16033","16037","16053","16059","16066"]);
+const MARS_HS={lat:40.6880,lng:-79.9700};
+const GLADE_RUN={lat:40.7151,lng:-79.8981};   // Glade Run Lake, Middlesex Twp
+const GLADE_MI=1.5;                            // "easy walk/bike" radius
+const WATER_FILE="./water.json";               // optional bundled NHD water (run fetch_water.py)
 
-// Call the county directly when the browser allows it; fall back to /api proxy.
-const COUNTY = "https://geo.co.butler.pa.us/server/rest/services/PAT/ParcelAndBoundary/FeatureServer/0/query";
-const OUT_FIELDS = ["PIN","Parid","TaxMapNumber","Owner","PhysicalAddress","Address1","Address2",
-  "CityStateZip","MunicipalityDescription","SchoolDescription","LandUseCode","AssessedLandValue",
-  "AssessedBuildingValue","AssessedValue","LastSalePrice","LastSaleDate","ShortLegal","DeedInfo",
-  "Shape__Area"].join(",");
-async function getJSON(url){ const r=await fetch(url); if(!r.ok) throw new Error("http "+r.status); return r.json(); }
-
-const PRIMARY = new Set(["PENN TOWNSHIP","MIDDLESEX TOWNSHIP","CLINTON TOWNSHIP","ADAMS TOWNSHIP",
-  "CENTER TOWNSHIP","SUMMIT TOWNSHIP","BUTLER TOWNSHIP","WINFIELD TOWNSHIP","BUFFALO TOWNSHIP",
-  "JACKSON TOWNSHIP","CRANBERRY TOWNSHIP","VALENCIA BOROUGH"]);
-const UNZONED = new Set(["CHERRY TOWNSHIP","CONCORD TOWNSHIP","WASHINGTON TOWNSHIP","MARION TOWNSHIP",
-  "VENANGO TOWNSHIP","ALLEGHENY TOWNSHIP","PARKER TOWNSHIP"]);
-
-const MANUAL = [
-  "Access — confirm legal, permittable frontage (township vs PennDOT road)",
-  "Slope — find a buildable bench under 15% (LiDAR / contours / Google Earth)",
-  "Perc — ask for any passed perc test; “drip system” signals marginal soils",
-  "OGM — read the deed for severed oil / gas / mineral rights",
+// Info-only drive times shown on each property (not scored). Coordinates are
+// approximate — nudge them if needed. DRIVE_MIN_PER_MILE turns straight-line
+// distance into a rough door-to-door drive estimate for this area.
+const DESTINATIONS=[
+  {name:"Falcon Dr, Valencia",     lat:40.7060, lng:-79.9650},
+  {name:"Liberty Blvd, Gibsonia",  lat:40.6360, lng:-79.9450},
+  {name:"Advance Church, Mars",    lat:40.6975, lng:-80.0135},
 ];
+const DRIVE_MIN_PER_MILE=2.2;
+
+const ROUTE_228=[[-80.107,40.685],[-80.068,40.683],[-80.010,40.690],[-79.970,40.688],[-79.935,40.701],[-79.870,40.728],[-79.814,40.745],[-79.720,40.730]];
+
+const PER_ACRE={"CRANBERRY TOWNSHIP":32000,"ADAMS TOWNSHIP":30000,"MIDDLESEX TOWNSHIP":26000,"VALENCIA BOROUGH":24000,"JACKSON TOWNSHIP":20000,"FORWARD TOWNSHIP":20000,"PENN TOWNSHIP":19000,"CLINTON TOWNSHIP":18000,"BUFFALO TOWNSHIP":13000,"WINFIELD TOWNSHIP":12000,"BUTLER TOWNSHIP":12000,"CENTER TOWNSHIP":11000,"SUMMIT TOWNSHIP":11000,"CHERRY TOWNSHIP":8000,"CONCORD TOWNSHIP":8000,"WASHINGTON TOWNSHIP":8000,"MARION TOWNSHIP":7000,"VENANGO TOWNSHIP":7000,"ALLEGHENY TOWNSHIP":7000,"PARKER TOWNSHIP":7000};
+const DEFAULT_PER_ACRE=12000;
+const rateFor=m=>PER_ACRE[(m||"").toUpperCase()]||DEFAULT_PER_ACRE;
+
+const SENDER={first:"Tim",partner:"Jordan",names:"Tim & Jordan Swackhammer",city:"Valencia",kids:"four children",returnAddress:["Tim & Jordan Swackhammer","[your street address]","Valencia, PA 16059"]};
+const W={acre:24,land:12,abs:12,zone:6,ten:9,wmu:18,mars:11,budget:8};
+
+const STAGES=[{k:"sent",l:"Sent"},{k:"replied",l:"Replied"},{k:"interested",l:"Interested"},{k:"dead",l:"Dead"}];
+
+const COUNTY="https://geo.co.butler.pa.us/server/rest/services/PAT/ParcelAndBoundary/FeatureServer/0/query";
+const OUT_FIELDS=["PIN","Parid","TaxMapNumber","Owner","PhysicalAddress","Address1","Address2","CityStateZip","MunicipalityDescription","SchoolDescription","LandUseCode","AssessedLandValue","AssessedBuildingValue","AssessedValue","LastSalePrice","LastSaleDate","ShortLegal","DeedInfo","Shape__Area"].join(",");
+
+const PRIMARY=new Set(["PENN TOWNSHIP","MIDDLESEX TOWNSHIP","CLINTON TOWNSHIP","ADAMS TOWNSHIP","CENTER TOWNSHIP","SUMMIT TOWNSHIP","BUTLER TOWNSHIP","WINFIELD TOWNSHIP","BUFFALO TOWNSHIP","JACKSON TOWNSHIP","CRANBERRY TOWNSHIP","VALENCIA BOROUGH"]);
+const UNZONED=new Set(["CHERRY TOWNSHIP","CONCORD TOWNSHIP","WASHINGTON TOWNSHIP","MARION TOWNSHIP","VENANGO TOWNSHIP","ALLEGHENY TOWNSHIP","PARKER TOWNSHIP"]);
+const INSTITUTIONAL=/\b(SOC|SOCIETY|CONSERVANCY|AUDUBON|COMMONWEALTH|COMMONWLTH|AUTHORITY|MUNICIPAL|BOROUGH OF|TOWNSHIP OF|TWP OF|COUNTY OF|CITY OF|STATE OF|UNITED STATES|GAME COMM|GAME LAND|FISH AND BOAT|DCNR|SCHOOL DIST|UNIVERSITY|COLLEGE|CHURCH|PARISH|DIOCESE|CEMETERY|MINISTRIES|CONGREGATION|HOSPITAL|FOUNDATION|UTILITIES|ELECTRIC|PIPELINE|RAILROAD|TURNPIKE|REDEVELOPMENT|HOUSING|SPORTSMEN|HOMEOWNERS|HOA|ASSN|ASSOCIATION|VFW|LEGION|FIRE CO|FIRE DEPT|WATER AUTH|SEWER|BANK|TRUSTEES OF)\b/;
+const STATE_ABBR=new Set("AL AK AZ AR CA CO CT DE FL GA HI ID IL IN IA KS KY LA ME MD MA MI MN MS MO MT NE NV NH NJ NM NY NC ND OH OK OR PA RI SC SD TN TX UT VT VA WA WV WI WY DC".split(" "));
+const MANUAL=["Access — confirm legal, permittable frontage (township vs PennDOT road)","Slope — find a buildable bench under 15% (LiDAR / contours / Google Earth)","Perc — ask for any passed perc test; “drip system” signals marginal soils","OGM — read the deed for severed oil / gas / mineral rights"];
 
 //=====================  STATE  =====================
-let selected = new Set();
-let rows = [];
-const store = {
-  get me(){ try{return JSON.parse(localStorage.getItem("lf_me"))||{}}catch{return {}} },
-  set me(v){ localStorage.setItem("lf_me", JSON.stringify(v)); },
-  status(id){ try{return (JSON.parse(localStorage.getItem("lf_status"))||{})[id]}catch{return null} },
-  setStatus(id,v){ let m={}; try{m=JSON.parse(localStorage.getItem("lf_status"))||{}}catch{}
-    if(v) m[id]=v; else delete m[id]; localStorage.setItem("lf_status", JSON.stringify(m)); },
-};
+let selected=new Set(), rows=[], WATER=null, trackMap={}, syncState="local";
+const $=s=>document.querySelector(s);
+const el=(t,c)=>{const e=document.createElement(t); if(c) e.className=c; return e;};
+async function getJSON(url,opts){ const r=await fetch(url,opts); if(!r.ok) throw new Error("http "+r.status); return r.json(); }
+const esc=s=>(s||"").replace(/[&<>"]/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[m]));
 
-const $ = s => document.querySelector(s);
-const el = (t,c)=>{const e=document.createElement(t); if(c) e.className=c; return e;};
+//=====================  TRACKING (Supabase + local) =====================
+const sbCfg=()=>{ const url=localStorage.getItem("lf_sb_url"), key=localStorage.getItem("lf_sb_key"); return (url&&key)?{url:url.replace(/\/+$/,""),key}:null; };
+const sbHeaders=cfg=>({apikey:cfg.key, Authorization:"Bearer "+cfg.key});
 
-//=====================  SCORING (mirrors the Python tool)  =====================
-const norm = s => (s||"").toUpperCase().replace(/[^A-Z0-9 ]/g,"").trim();
-const acresOf = a => (a.Shape__Area||0)/SQFT_PER_ACRE;
+function loadLocalTrack(){ try{ trackMap=JSON.parse(localStorage.getItem("lf_track_cache"))||{}; }catch{ trackMap={}; }
+  try{ const legacy=JSON.parse(localStorage.getItem("lf_status")); if(legacy && !Object.keys(trackMap).length){ Object.keys(legacy).forEach(id=>{ trackMap[id]={parcel_id:id,status:"sent"}; }); } }catch{} }
 
-function saleYear(ms){ if(!ms) return null; const y=new Date(ms).getUTCFullYear();
-  return (y>1900 && y<2100)? y : null; }
-
-function isAbsentee(a){
-  const phys = norm(a.PhysicalAddress);
-  const mail1 = norm(a.Address1);
-  const zip = ((a.CityStateZip||"").match(/\d{5}/)||[])[0]||"";
-  if(!phys) return true;                          // raw, unaddressed parcel
-  const parts = phys.split(" ");
-  if(parts[0] && mail1.includes(parts[0]) && parts.slice(1,3).some(t=>t&&mail1.includes(t)))
-    return false;
-  if(LOCAL_ZIPS.has(zip)) return false;
-  return true;
+async function loadTracking(){
+  const cfg=sbCfg();
+  if(cfg){
+    try{ const arr=await getJSON(`${cfg.url}/rest/v1/outreach?select=*`,{headers:sbHeaders(cfg)});
+      trackMap={}; arr.forEach(x=>trackMap[x.parcel_id]=x);
+      localStorage.setItem("lf_track_cache",JSON.stringify(trackMap)); syncState="connected"; updateSyncUI(); updateOutCount(); return;
+    }catch(e){ syncState="error"; }
+  } else syncState="local";
+  loadLocalTrack(); updateSyncUI(); updateOutCount();
 }
-const tierOf = a => UNZONED.has((a.MunicipalityDescription||"").toUpperCase()) ? "unzoned":"zoned";
+function persistTrack(rec,del){
+  localStorage.setItem("lf_track_cache",JSON.stringify(trackMap));
+  const cfg=sbCfg(); if(!cfg) return;
+  if(del){ fetch(`${cfg.url}/rest/v1/outreach?parcel_id=eq.${encodeURIComponent(rec.parcel_id)}`,{method:"DELETE",headers:sbHeaders(cfg)}).catch(()=>{}); return; }
+  fetch(`${cfg.url}/rest/v1/outreach`,{method:"POST",headers:{...sbHeaders(cfg),"Content-Type":"application/json",Prefer:"resolution=merge-duplicates,return=minimal"},body:JSON.stringify([rec])})
+    .then(r=>{ if(!r.ok) toast("Sync failed — saved on device"); }).catch(()=>toast("Offline — saved on device"));
+}
+function setTracking(id,fields,meta){
+  let rec=Object.assign({parcel_id:id},trackMap[id]||{},fields,{updated_at:new Date().toISOString()});
+  if(meta){ rec.owner=meta.owner||rec.owner; rec.municipality=meta.municipality||rec.municipality; rec.acres=meta.acres??rec.acres; }
+  if(!rec.status && !(rec.notes&&rec.notes.trim())){ delete trackMap[id]; persistTrack({parcel_id:id},true); }
+  else { trackMap[id]=rec; persistTrack(rec,false); }
+  updateOutCount();
+}
+function updateOutCount(){ const n=Object.keys(trackMap).length; $("#outCount").textContent=n?`(${n})`:""; }
+function updateSyncUI(){ const d=$("#syncDot"); d.className="syncdot"+(syncState==="connected"?" on":syncState==="error"?" err":"");
+  const s=$("#syncStatus"); if(s) s.textContent = syncState==="connected"?"Connected — syncing across devices.":syncState==="error"?"Couldn't reach Supabase — using this device only.":"Local only — set up sync to share across devices."; }
 
-function score(a){
-  const acres = acresOf(a);
-  let sa = (acres>=25?1:acres>=15?.85:acres>=10?.7:acres>=5?.4:.15)*W.acre;
-  const bldg = a.AssessedBuildingValue||0;
-  let sr = (bldg<RAW_BUILDING_MAX?1:bldg<20000?.55:.2)*W.raw;
-  const abs = isAbsentee(a); let sab=(abs?1:.2)*W.abs;
-  const tier = tierOf(a); let sz=(tier==="zoned"?1:.65)*W.zone;
-  const yr = saleYear(a.LastSaleDate);
-  const ten = yr? (new Date().getFullYear()-yr): null;
-  let st = (ten===null?.5: ten>=ESTATE_YEARS?1: ten>=12?.65:.3)*W.ten;
-  const av = a.AssessedValue||0;
-  return { total:Math.round((sa+sr+sab+sz+st)*10)/10, acres, absentee:abs, tier,
-    tenure:ten, raw: bldg<RAW_BUILDING_MAX, assessedPerAcre: acres? Math.round(av/acres):0 };
+//=====================  GEO HELPERS  =====================
+function centroidOf(a){ const g=a.__geom; if(!g||!g.rings||!g.rings.length) return null;
+  const ring=g.rings[0]; let sx=0,sy=0,n=0; for(const p of ring){ sx+=p[0]; sy+=p[1]; n++; } return n?{lng:sx/n,lat:sy/n}:null; }
+function bboxOf(rings){ let mnx=1e9,mny=1e9,mxx=-1e9,mxy=-1e9; for(const r of rings) for(const p of r){ if(p[0]<mnx)mnx=p[0]; if(p[0]>mxx)mxx=p[0]; if(p[1]<mny)mny=p[1]; if(p[1]>mxy)mxy=p[1]; } return [mnx,mny,mxx,mxy]; }
+function pointInRings(lat,lng,rings){ let inside=false; for(const ring of rings){ for(let i=0,j=ring.length-1;i<ring.length;j=i++){ const xi=ring[i][0],yi=ring[i][1],xj=ring[j][0],yj=ring[j][1]; if(((yi>lat)!==(yj>lat))&&(lng<(xj-xi)*(lat-yi)/(yj-yi)+xi)) inside=!inside; } } return inside; }
+function southOf228(lat,lng){ const R=ROUTE_228; if(lng<=R[0][0])return lat<R[0][1]; if(lng>=R[R.length-1][0])return lat<R[R.length-1][1];
+  for(let i=0;i<R.length-1;i++){ const[x1,y1]=R[i],[x2,y2]=R[i+1]; if(lng>=x1&&lng<=x2){ const t=(lng-x1)/(x2-x1); return lat<(y1+t*(y2-y1)); } } return false; }
+function milesBetween(a,b){ const Rm=3958.8,t=Math.PI/180; const dLat=(b.lat-a.lat)*t,dLng=(b.lng-a.lng)*t;
+  const s=Math.sin(dLat/2)**2+Math.cos(a.lat*t)*Math.cos(b.lat*t)*Math.sin(dLng/2)**2; return 2*Rm*Math.asin(Math.sqrt(s)); }
+
+//=====================  WATER (bundled NHD)  =====================
+async function loadWater(){
+  if(WATER!==null) return;
+  try{ const j=await getJSON(WATER_FILE);
+    WATER=(j.features||j||[]).map(f=>{ const pts=f.pts||[]; let mnx=1e9,mny=1e9,mxx=-1e9,mxy=-1e9;
+      for(const p of pts){ if(p[0]<mnx)mnx=p[0]; if(p[0]>mxx)mxx=p[0]; if(p[1]<mny)mny=p[1]; if(p[1]>mxy)mxy=p[1]; }
+      return {t:f.t,name:f.name||"",perennial:!!f.perennial,pts,bbox:[mnx,mny,mxx,mxy]}; });
+  }catch{ WATER=[]; }  // absent file -> no on-parcel water flags (Glade Run still works)
+}
+function waterOnParcel(a){
+  if(!WATER||!WATER.length){ return null; }
+  const g=a.__geom; if(!g||!g.rings||!g.rings.length) return null;
+  const pb=bboxOf(g.rings); let best=null;
+  for(const wf of WATER){
+    if(wf.bbox[2]<pb[0]||wf.bbox[0]>pb[2]||wf.bbox[3]<pb[1]||wf.bbox[1]>pb[3]) continue; // bbox reject
+    for(const p of wf.pts){ if(p[0]<pb[0]||p[0]>pb[2]||p[1]<pb[1]||p[1]>pb[3]) continue;
+      if(pointInRings(p[1],p[0],g.rings)){ if(!best||(wf.perennial&&!best.perennial)||(wf.name&&!best.name)) best={t:wf.t,name:wf.name,perennial:wf.perennial}; break; } }
+  }
+  return best;
+}
+
+//=====================  SCORING  =====================
+const norm=s=>(s||"").toUpperCase().replace(/[^A-Z0-9 ]/g,"").trim();
+const acresOf=a=>(a.Shape__Area||0)/SQFT_PER_ACRE;
+const isInstitutional=o=>INSTITUTIONAL.test((o||"").toUpperCase());
+function saleYear(ms){ if(!ms) return null; const y=new Date(ms).getUTCFullYear(); return (y>1900&&y<2100)?y:null; }
+function isAbsentee(a){ const phys=norm(a.PhysicalAddress),mail1=norm(a.Address1); const zip=((a.CityStateZip||"").match(/\d{5}/)||[])[0]||"";
+  if(!phys) return true; const parts=phys.split(" ");
+  if(parts[0]&&mail1.includes(parts[0])&&parts.slice(1,3).some(t=>t&&mail1.includes(t))) return false;
+  if(LOCAL_ZIPS.has(zip)) return false; return true; }
+const tierOf=a=>UNZONED.has((a.MunicipalityDescription||"").toUpperCase())?"unzoned":"zoned";
+
+function score(a,budget){
+  const cen=centroidOf(a); let earned=0,possible=0; const add=(p,m)=>{earned+=p;possible+=m;};
+  const acres=acresOf(a);
+  add((acres>=10?Math.min(1,0.5+(acres-10)*0.01):acres/20)*W.acre,W.acre);
+  const av=a.AssessedValue||0,lv=a.AssessedLandValue||0,bv=a.AssessedBuildingValue||0;
+  const landShare=av>0?Math.max(0,Math.min(1,lv/av)):(bv?0.3:1);
+  add((0.45+0.55*landShare)*W.land,W.land);
+  add((isAbsentee(a)?1:.2)*W.abs,W.abs);
+  add((tierOf(a)==="zoned"?1:.65)*W.zone,W.zone);
+  let tenure=null; if((a.LastSalePrice||0)>0){ const yr=saleYear(a.LastSaleDate); if(yr){ tenure=new Date().getFullYear()-yr; add((tenure>=ESTATE_YEARS?1:tenure>=12?.65:.3)*W.ten,W.ten); } }
+  let inside2B=null; if(cen){ inside2B=southOf228(cen.lat,cen.lng); add((inside2B?1:0)*W.wmu,W.wmu); }
+  let miles=null; if(cen){ miles=milesBetween(cen,MARS_HS); add((miles<=3?1:miles<=6?.7:miles<=10?.4:miles<=15?.15:0)*W.mars,W.mars); }
+  const rate=rateFor(a.MunicipalityDescription);
+  const landMkt=Math.round(acres*rate), bldgMkt=Math.round(bv*CLR_FACTOR);
+  const sy=saleYear(a.LastSaleDate); const recentSale=(a.LastSalePrice||0)>0&&sy&&(new Date().getFullYear()-sy)<=RECENT_SALE_YEARS;
+  const estTotal=recentSale?a.LastSalePrice:(landMkt+bldgMkt);
+  const ratio=budget>0?estTotal/budget:1;
+  add((ratio<=0.6?1:ratio<=1?(1-(ratio-0.6)/0.4*0.5):0)*W.budget,W.budget);
+  // water flags (not scored)
+  const gladeMi=cen?milesBetween(cen,GLADE_RUN):null;
+  return {
+    total:possible?Math.round(earned/possible*1000)/10:0, acres, absentee:isAbsentee(a), tier:tierOf(a), tenure, inside2B,
+    miles:miles===null?null:Math.round(miles*10)/10, assessedLand:lv, assessedBldg:bv, assessedTotal:av,
+    landShare:av>0?Math.round(lv/av*100):null, rate, landMkt, bldgMkt, estTotal, recentSaleYear:recentSale?sy:null,
+    hasHouse:av>0?(bv/av>=0.12):(bv>0), raw:av>0?(bv/av<0.03):(bv<5000),
+    gladeMi:gladeMi===null?null:Math.round(gladeMi*10)/10, gladeNear:gladeMi!==null&&gladeMi<=GLADE_MI,
+  };
 }
 
 //=====================  DATA  =====================
 async function loadMunis(){
-  const direct = COUNTY+"?"+new URLSearchParams({where:"MunicipalityDescription IS NOT NULL",
-    outFields:"MunicipalityDescription",returnDistinctValues:"true",returnGeometry:"false",
-    orderByFields:"MunicipalityDescription",f:"json"});
-  let j=null;
-  try{ j=await getJSON(direct); }
-  catch{ try{ j=await getJSON("/api/parcels?distinct=municipalities"); }catch{} }
-  const names=[...new Set(((j&&j.features)||[]).map(f=>f.attributes.MunicipalityDescription)
-    .filter(Boolean))].sort();
-  renderChips(names.length ? names : [...PRIMARY,...UNZONED].sort());
+  const direct=COUNTY+"?"+new URLSearchParams({where:"MunicipalityDescription IS NOT NULL",outFields:"MunicipalityDescription",returnDistinctValues:"true",returnGeometry:"false",orderByFields:"MunicipalityDescription",f:"json"});
+  let j=null; try{ j=await getJSON(direct); }catch{ try{ j=await getJSON("/api/parcels?distinct=municipalities"); }catch{} }
+  const names=[...new Set(((j&&j.features)||[]).map(f=>f.attributes.MunicipalityDescription).filter(Boolean))].sort();
+  renderChips(names.length?names:[...PRIMARY,...UNZONED].sort());
 }
-
 function sqlList(set){ return "("+[...set].map(v=>"'"+v.replace(/'/g,"''")+"'").join(",")+")"; }
-
-async function fetchPage(where, offset, useArea){
-  const w = useArea ? where : where.replace(/ AND Shape__Area > \d+/,"");
-  const direct = COUNTY+"?"+new URLSearchParams({where:w,outFields:OUT_FIELDS,
-    returnGeometry:"false",resultOffset:offset,resultRecordCount:"2000",f:"json"});
-  try{ return await getJSON(direct); }
-  catch{ return getJSON(`/api/parcels?where=${encodeURIComponent(w)}&offset=${offset}`); }
+async function fetchPage(where,offset,useArea){
+  const w=useArea?where:where.replace(/ AND Shape__Area > \d+/,"");
+  const direct=COUNTY+"?"+new URLSearchParams({where:w,outFields:OUT_FIELDS,returnGeometry:"true",outSR:"4326",maxAllowableOffset:"0.0003",resultOffset:offset,resultRecordCount:"2000",f:"json"});
+  try{ return await getJSON(direct); }catch{ return getJSON(`/api/parcels?where=${encodeURIComponent(w)}&offset=${offset}`); }
 }
-
 async function run(){
   if(!selected.size){ toast("Pick at least one township"); return; }
-  const minAcres = Math.max(1, parseInt($("#minAcres").value)||10);
+  const minAcres=Math.max(1,parseInt($("#minAcres").value)||10);
+  const budget=Math.max(0,parseInt($("#maxBudget").value)||600000);
   const btn=$("#find"); btn.disabled=true; btn.innerHTML='<span class="spin"></span>Searching…';
-  $("#results").innerHTML=""; $("#rhead").style.display="none"; $("#footnote").style.display="none";
-  rows=[];
-
-  const base = `MunicipalityDescription IN ${sqlList(selected)} ` +
-               `AND (AssessedBuildingValue IS NULL OR AssessedBuildingValue < ${QUERY_BUILDING_MAX}) ` +
-               `AND Shape__Area > ${minAcres*SQFT_PER_ACRE}`;
-  let useArea = true, offset=0, raw=[], pages=0;
-
+  $("#results").innerHTML=""; $("#rhead").style.display="none"; $("#footnote").style.display="none"; rows=[];
+  await loadWater();
+  const base=`MunicipalityDescription IN ${sqlList(selected)} AND Shape__Area > ${minAcres*SQFT_PER_ACRE}`;
+  let useArea=true,offset=0,raw=[],pages=0;
   try{
     while(pages<20){
-      const j = await fetchPage(base, offset, useArea);
-      if(j && j.error){
-        if(useArea){ useArea=false; offset=0; raw=[]; pages=0; continue; } // retry w/o area filter
-        throw new Error(JSON.stringify(j.error).slice(0,160));
-      }
-      const feats=(j.features||[]).map(f=>f.attributes);
-      raw.push(...feats);
-      $("#status").innerHTML = `<span class="spin"></span>Scanning county records… <b>${raw.length}</b> parcels pulled`;
-      if(j.exceededTransferLimit || feats.length===2000){ offset+=2000; pages++; }
-      else break;
+      const j=await fetchPage(base,offset,useArea);
+      if(j&&j.error){ if(useArea){ useArea=false; offset=0; raw=[]; pages=0; continue; } throw new Error(JSON.stringify(j.error).slice(0,160)); }
+      const feats=(j.features||[]).map(f=>({...f.attributes,__geom:f.geometry})); raw.push(...feats);
+      $("#status").innerHTML=`<span class="spin"></span>Scanning county records… <b>${raw.length}</b> parcels`;
+      if(j.exceededTransferLimit||feats.length===2000){ offset+=2000; pages++; } else break;
     }
-  }catch(err){
-    btn.disabled=false; btn.textContent="Find land";
-    $("#status").innerHTML = `Couldn't reach the county server. ${String(err)}. Try again in a moment.`;
-    return;
-  }
-
-  rows = raw.map(a=>({a, s:score(a)}))
-            .filter(x=>x.s.acres>=minAcres)
-            .sort((x,y)=>y.s.total-x.s.total);
-
-  btn.disabled=false; btn.textContent="Find land";
-  render(minAcres);
+  }catch(err){ btn.disabled=false; btn.textContent="Find land"; $("#status").innerHTML=`Couldn't reach the county server. ${String(err)}. Try again in a moment.`; return; }
+  rows=raw.filter(a=>!isInstitutional(a.Owner)).map(a=>({a,s:score(a,budget),w:waterOnParcel(a)}))
+          .filter(x=>x.s.acres>=minAcres&&x.s.estTotal<=budget).sort((x,y)=>y.s.total-x.s.total);
+  btn.disabled=false; btn.textContent="Find land"; render(minAcres,budget);
 }
 
 //=====================  RENDER  =====================
 function renderChips(names){
   const box=$("#chips"); box.innerHTML="";
-  names.forEach(n=>{
-    const up=n.toUpperCase();
-    const c=el("button","chip"+(UNZONED.has(up)?" unzoned":""));
-    c.textContent=n.replace(" TOWNSHIP","").replace(" BOROUGH"," Boro")
-      .toLowerCase().replace(/\b\w/g,m=>m.toUpperCase());
-    c.dataset.name=n;
+  names.forEach(n=>{ const up=n.toUpperCase(); const c=el("button","chip"+(UNZONED.has(up)?" unzoned":""));
+    c.textContent=n.replace(" TOWNSHIP","").replace(" BOROUGH"," Boro").toLowerCase().replace(/\b\w/g,m=>m.toUpperCase()); c.dataset.name=n;
     if(UNZONED.has(up)){ const t=el("span","tag"); t.textContent="unzoned"; c.appendChild(t); }
-    c.onclick=()=>{ c.classList.toggle("on");
-      if(c.classList.contains("on")) selected.add(n); else selected.delete(n); };
-    box.appendChild(c);
-  });
+    c.onclick=()=>{ c.classList.toggle("on"); if(c.classList.contains("on")) selected.add(n); else selected.delete(n); };
+    box.appendChild(c); });
   selectPrimary();
 }
-function applySel(){ document.querySelectorAll(".chip").forEach(c=>
-  c.classList.toggle("on", selected.has(c.dataset.name))); }
-function selectPrimary(){ selected=new Set([...document.querySelectorAll(".chip")]
-  .map(c=>c.dataset.name).filter(n=>PRIMARY.has(n.toUpperCase()))); applySel(); }
+function applySel(){ document.querySelectorAll(".chip").forEach(c=>c.classList.toggle("on",selected.has(c.dataset.name))); }
+function selectPrimary(){ selected=new Set([...document.querySelectorAll(".chip")].map(c=>c.dataset.name).filter(n=>PRIMARY.has(n.toUpperCase()))); applySel(); }
 function selectNone(){ selected=new Set(); applySel(); }
 
-function render(minAcres){
-  const res=$("#results"); res.innerHTML="";
-  $("#rhead").style.display="flex";
-  $("#count").textContent=`${rows.length} ≥ ${minAcres} ac`;
-  if(!rows.length){
-    $("#status").textContent="No parcels matched. Widen the townships or lower the acreage floor.";
-    res.innerHTML=`<div class="empty">Nothing met the criteria.<br>Try adding townships or dropping the minimum acres.</div>`;
-    return;
-  }
-  $("#status").innerHTML=`<b>${rows.length}</b> candidates. Top of the list = large, raw, absentee-owned, in your primary ring. Tap one to expand.`;
-  $("#footnote").style.display="block";
-  rows.forEach((x,i)=>res.appendChild(card(x,i)));
+function render(minAcres,budget){
+  const res=$("#results"); res.innerHTML=""; $("#rhead").style.display="flex"; $("#count").textContent=`${rows.length} ≤ $${Math.round(budget/1000)}k`;
+  if(!rows.length){ $("#status").textContent="No parcels matched. Widen townships, lower acreage, or raise the budget.";
+    res.innerHTML=`<div class="empty">Nothing met the criteria.<br>Try more townships, fewer acres, or a higher budget.</div>`; return; }
+  const in2b=rows.filter(r=>r.s.inside2B).length, nearG=rows.filter(r=>r.s.gladeNear).length;
+  $("#status").innerHTML=`<b>${rows.length}</b> under $${Math.round(budget/1000)}k. <b>${in2b}</b> in WMU 2B${nearG?`, <b>${nearG}</b> near Glade Run`:``}. Tap to expand.`;
+  $("#footnote").style.display="block"; rows.forEach((x,i)=>res.appendChild(card(x,i)));
 }
-
-function fmt$(n){ return n? "$"+Number(n).toLocaleString() : "—"; }
+function fmt$(n){ return (n||n===0)?"$"+Number(Math.round(n)).toLocaleString():"—"; }
+function fmtk(n){ return "$"+Math.round(n/1000)+"k"; }
 
 function card(x,i){
-  const {a,s}=x;
-  const id = a.PIN||a.Parid||a.TaxMapNumber||("row"+i);
-  const done = store.status(id)==="contacted";
-  const c=el("div","card"+(done?" contacted":""));
-
+  const {a,s,w}=x; const id=a.PIN||a.Parid||a.TaxMapNumber||("row"+i);
+  const tr=trackMap[id]; const c=el("div","card"+((tr&&tr.status==="dead")?" dead":""));
   const head=el("div","chead");
   const sc=el("div","score"); sc.innerHTML=`<b>${s.total}</b><span>score</span>`;
-  const main=el("div","cmain");
-  const muni=(a.MunicipalityDescription||"").replace(" TOWNSHIP"," Twp").replace(" BOROUGH"," Boro");
-  main.innerHTML =
-    `<div class="ac">${s.acres.toFixed(1)} <small>acres</small></div>`+
-    `<div class="own">${esc(a.Owner||"Unknown owner")}</div>`+
-    `<div class="muni">${esc(muni)}</div>`+
-    `<div class="pills">`+
-      (s.absentee?`<span class="pill abs">absentee</span>`:``)+
-      (s.raw?`<span class="pill raw">raw land</span>`:``)+
-      `<span class="pill ${s.tier==="zoned"?"zoned":"unz"}">${s.tier==="zoned"?"primary ring":"unzoned"}</span>`+
-      (s.tenure!=null&&s.tenure>=ESTATE_YEARS?`<span class="pill">owned ${s.tenure}y</span>`:``)+
-    `</div>`;
-  head.appendChild(sc); head.appendChild(main);
-  head.onclick=()=>c.classList.toggle("open");
+  const main=el("div","cmain"); const muni=(a.MunicipalityDescription||"").replace(" TOWNSHIP"," Twp").replace(" BOROUGH"," Boro");
+  const statPill = tr&&tr.status?`<span class="pill stat">${tr.status}</span>`:``;
+  const waterPill = w?`<span class="pill water">${w.t==="pond"?"pond":"creek"}${w.name?" · "+esc(w.name):""}</span>`:``;
+  const gladePill = s.gladeNear?`<span class="pill glade">~${s.gladeMi}mi Glade Run</span>`:``;
+  main.innerHTML=`<div class="ac">${s.acres.toFixed(1)} <small>acres</small></div>`+
+    `<div class="own">${esc(a.Owner||"Unknown owner")}</div><div class="muni">${esc(muni)}</div>`+
+    `<div class="pills">${statPill}<span class="pill price">~${fmtk(s.estTotal)}</span>`+
+    (s.inside2B?`<span class="pill wmu">WMU 2B</span>`:``)+waterPill+gladePill+
+    (s.absentee?`<span class="pill abs">absentee</span>`:``)+
+    (s.raw?`<span class="pill raw">raw land</span>`:(s.hasHouse?`<span class="pill house">has house</span>`:``))+
+    (s.miles!=null&&s.miles<=8?`<span class="pill mars">~${s.miles}mi Mars</span>`:``)+
+    `<span class="pill ${s.tier==="zoned"?"zoned":"unz"}">${s.tier==="zoned"?"primary ring":"unzoned"}</span></div>`;
+  head.appendChild(sc); head.appendChild(main); head.onclick=()=>c.classList.toggle("open");
 
   const body=el("div","cbody");
+  const cen=centroidOf(a);
+  const dt=DESTINATIONS.map(d=>cen?Math.round(milesBetween(cen,d)*DRIVE_MIN_PER_MILE):null);
+  const budget=Math.max(0,parseInt($("#maxBudget").value)||600000);
+  const underPct=budget?Math.round((1-s.estTotal/budget)*100):null;
+  const estLine=s.recentSaleYear?`~${fmt$(s.estTotal)} (from ${s.recentSaleYear} sale)`:(s.assessedBldg>0?`land ~${fmt$(s.landMkt)} + building ~${fmt$(s.bldgMkt)}`:`land ~${fmt$(s.landMkt)} (raw)`);
+  const assessedLine=`land ${fmt$(s.assessedLand)} · building ${s.assessedBldg?fmt$(s.assessedBldg):"$0"} · total ${fmt$(s.assessedTotal)}`;
+  const waterTxt = WATER&&WATER.length ? (w?`${w.t==="pond"?"Pond":"Creek/stream"}${w.name?" ("+esc(w.name)+")":""}${w.perennial?", perennial":""}`:"none on parcel") : "add water data";
   const kv=el("div","kv");
-  kv.innerHTML =
-    cell("Assessed value", fmt$(a.AssessedValue))+
-    cell("Assessed $/acre", fmt$(s.assessedPerAcre))+
-    cell("Last sale", a.LastSalePrice?fmt$(a.LastSalePrice):"—")+
-    cell("Owner mailing", esc([a.Address1,a.CityStateZip].filter(Boolean).join(", ")||"—"))+
-    cell("School", esc(a.SchoolDescription||"—"))+
-    cell("Parcel ID", esc(id));
+  kv.innerHTML=cell("Est. market price",`~${fmt$(s.estTotal)}`)+cell("vs budget",underPct!=null?(underPct>=0?`${underPct}% under`:`OVER`):"—")+
+    `<div class="full">Estimate breakdown<b>${estLine}</b></div>`+`<div class="full">Assessed (county)<b>${assessedLine}</b></div>`+
+    cell("Water on parcel",waterTxt)+cell("Glade Run",s.gladeMi!=null?`${s.gladeMi} mi`:"—")+
+    cell("Hunting unit",s.inside2B===null?"unknown":(s.inside2B?"Inside 2B ✓":"Outside 2B"))+cell("To Mars HS",s.miles!=null?`${s.miles} mi`:"—")+
+    cell("→ Falcon Dr, Valencia",dt[0]!=null?`~${dt[0]} min`:"—")+cell("→ Liberty Blvd, Gibsonia",dt[1]!=null?`~${dt[1]} min`:"—")+
+    cell("→ Advance Church, Mars",dt[2]!=null?`~${dt[2]} min`:"—")+cell("Market $/acre",fmt$(s.rate))+cell("% land",s.landShare!=null?`${s.landShare}%`:"—")+
+    cell("Last sale",a.LastSalePrice?`${fmt$(a.LastSalePrice)}${s.recentSaleYear?" ("+s.recentSaleYear+")":""}`:"none recorded")+cell("School",esc(a.SchoolDescription||"—"))+
+    `<div class="full">Owner mailing<b>${esc([a.Address1,a.CityStateZip].filter(Boolean).join(", ")||"—")}</b></div>`+cell("Parcel ID",esc(id));
   body.appendChild(kv);
 
-  const chk=el("div","checklist");
-  chk.innerHTML=`<div class="ct">Verify in the field — not in county data</div><ul>`+
-    MANUAL.map(m=>`<li>${m}</li>`).join("")+`</ul>`;
-  body.appendChild(chk);
+  const q=encodeURIComponent(`${a.Owner||""} ${a.MunicipalityDescription||""} Butler County PA`);
+  const maps=cen?`https://www.google.com/maps/search/?api=1&query=${cen.lat},${cen.lng}`:`https://www.google.com/maps/search/?api=1&query=${q}`;
+  const links=el("div","links");
+  links.innerHTML=`<a href="${maps}" target="_blank" rel="noopener">View on Google Maps</a><a href="https://www.google.com/search?q=${q}" target="_blank" rel="noopener">Search owner</a>`;
+  body.appendChild(links);
+
+  const chk=el("div","checklist"); chk.innerHTML=`<div class="ct">Verify in the field — not in county data</div><ul>`+MANUAL.map(m=>`<li>${m}</li>`).join("")+`</ul>`; body.appendChild(chk);
+
+  // outreach tracking
+  const meta={owner:a.Owner,municipality:a.MunicipalityDescription,acres:s.acres};
+  const trk=el("div","track"); trk.innerHTML=`<div class="lbl">Outreach</div>`;
+  const stages=el("div","stages");
+  STAGES.forEach(st=>{ const b=el("button",(trackMap[id]&&trackMap[id].status===st.k)?"on":""); b.textContent=st.l;
+    b.onclick=()=>{ const cur=trackMap[id]&&trackMap[id].status; const ns=cur===st.k?null:st.k; setTracking(id,{status:ns},meta);
+      stages.querySelectorAll("button").forEach(bb=>bb.classList.remove("on")); if(ns) b.classList.add("on");
+      c.classList.toggle("dead",ns==="dead"); const hp=main.querySelector(".pill.stat");
+      if(ns){ if(hp) hp.textContent=ns; else { const np=el("span","pill stat"); np.textContent=ns; main.querySelector(".pills").prepend(np); } }
+      else if(hp) hp.remove(); };
+    stages.appendChild(b); });
+  trk.appendChild(stages);
+  const nt=el("textarea","tnotes"); nt.placeholder="Notes (owner said…, follow up date…)"; nt.value=(trackMap[id]&&trackMap[id].notes)||"";
+  nt.addEventListener("change",()=>setTracking(id,{notes:nt.value.trim()},meta));
+  trk.appendChild(nt); body.appendChild(trk);
 
   const btns=el("div","cbtns");
-  const lb=el("button","prim"); lb.textContent="Write letter"; lb.onclick=()=>openLetter(x,id);
-  const mb=el("button",done?"done":""); mb.textContent=done?"✓ Contacted":"Mark contacted";
-  mb.onclick=()=>{ const now=store.status(id)==="contacted"?null:"contacted";
-    store.setStatus(id,now); c.classList.toggle("contacted",!!now);
-    mb.textContent=now?"✓ Contacted":"Mark contacted"; mb.classList.toggle("done",!!now); };
-  btns.appendChild(lb); btns.appendChild(mb);
+  const lb=el("button","prim"); lb.textContent="Write letter"; lb.onclick=()=>openLetter(x); btns.appendChild(lb);
   body.appendChild(btns);
 
-  c.appendChild(head); c.appendChild(body);
-  return c;
+  c.appendChild(head); c.appendChild(body); return c;
 }
 const cell=(k,v)=>`<div>${k}<b>${v}</b></div>`;
-const esc=s=>(s||"").replace(/[&<>"]/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[m]));
 
 //=====================  LETTER  =====================
-const BUSINESS=/\b(LLC|INC|CORP|CO|COMPANY|LP|LLP|LTD|ASSOCIATES?|AUTHORITY|BANK|CHURCH|PARTNERS|PROPERTIES|HOLDINGS|ENTERPRISES|DEVELOPMENT|BOROUGH|TOWNSHIP|COUNTY|FARMS|RENTALS|GROUP)\b/;
-function salutation(owner){
-  const o=(owner||"").trim(); if(!o) return "Property Owner";
-  if(BUSINESS.test(o.toUpperCase())) return "Property Owner";
-  const sur=(o.match(/[A-Za-z]+/)||["Property"])[0];
-  return sur.charAt(0).toUpperCase()+sur.slice(1).toLowerCase()+" Family";
-}
+function titleCase(s){ return (s||"").trim().split(/\s+/).map(w=>{ const up=w.toUpperCase();
+  if(STATE_ABBR.has(up)&&/^[A-Za-z]{2}$/.test(w)) return up; if(up==="PO"||up==="RR"||up==="US") return up;
+  if(/\d/.test(w)) return w; return w.charAt(0).toUpperCase()+w.slice(1).toLowerCase(); }).join(" "); }
+const titlePlain=s=>(s||"").trim().split(/\s+/).map(w=>/\d/.test(w)?w:w.charAt(0).toUpperCase()+w.slice(1).toLowerCase()).join(" ");
+const BUSINESS=/\b(LLC|INC|CORP|CO|COMPANY|LP|LLP|LTD|REALTY|ASSOCIATES?|AUTHORITY|BANK|CHURCH|PARTNERS|PROPERTIES|HOLDINGS|ENTERPRISES|DEVELOPMENT|BOROUGH|TOWNSHIP|COUNTY|FARMS|RENTALS|GROUP)\b/;
+function salutation(owner){ const o=(owner||"").trim(); if(!o) return "Neighbor"; if(BUSINESS.test(o.toUpperCase())) return "Property Owner";
+  const sur=(o.match(/[A-Za-z]+/)||["Neighbor"])[0]; return sur.charAt(0).toUpperCase()+sur.slice(1).toLowerCase()+" Family"; }
 function letterBody(a,me){
-  const muni=(a.MunicipalityDescription||"").toLowerCase().replace(/\b\w/g,m=>m.toUpperCase());
-  const phys=a.PhysicalAddress&&a.PhysicalAddress.trim();
-  const addr = phys? ` at ${phys}`:"";
+  const muni=titleCase(a.MunicipalityDescription||""), owner=titlePlain(a.Owner||"");
+  const mailing=[titleCase(a.Address1||""),titleCase(a.Address2||""),titleCase(a.CityStateZip||"")].filter(Boolean).join("\n");
   const date=new Date().toLocaleDateString("en-US",{year:"numeric",month:"long",day:"numeric"});
-  return `${date}\n\n${a.Owner||""}\n${[a.Address1,a.CityStateZip].filter(Boolean).join("\n")}\n\n`+
-`Dear ${salutation(a.Owner)},\n\n`+
-`My name is ${me.name||"[your name]"} and I'm a local resident in the Butler area. `+
-`I'm writing because I'm personally looking for a piece of wooded or open land to own and care for, `+
-`and your property in ${muni}${addr} stood out to me.\n\n`+
-`I am not an agent or a developer — I'm an individual buyer, I can move at your pace, and there's `+
-`no obligation at all. If you would ever consider selling, now or down the road, I'd be glad to talk `+
-`and make you a fair, no-pressure offer. If the timing isn't right, I completely understand.\n\n`+
-`You can reach me anytime at ${me.phone||"[your phone]"} or ${me.email||"[your email]"}.\n\n`+
-`Thank you for your time.\n\nWarm regards,\n${me.name||"[your name]"}\n\n`+
-`(Parcel reference: ${a.PIN||a.Parid||a.TaxMapNumber||""})`;
+  const phone=me.phone||"[your phone]", email=me.email||"[your email]";
+  return `${date}\n\n${owner}\n${mailing}\n\nDear ${salutation(a.Owner)},\n\n`+
+`My name is ${SENDER.first} Swackhammer. My wife ${SENDER.partner} and I, along with our ${SENDER.kids}, live just over in ${SENDER.city}. We're in a neighborhood right now, but our hearts have always been set on something different — a place with room to breathe, where our kids can grow up on the land, and where we can put down roots and build a forever home.\n\n`+
+`Your property in ${muni} is exactly the kind of place we've been dreaming about. We aren't developers, and we have no interest in carving it into lots. Just the opposite — we're hoping for larger acreage so that one day, when our four kids are grown and starting families of their own, each of them might build a home and stay close, all on the same land. We would care for it and protect it the way it deserves.\n\n`+
+`If you'd ever consider selling — now, or somewhere down the road — we would be honored just to talk. There's no pressure and no obligation at all; if the timing isn't right, we completely understand and wish you nothing but the best.\n\n`+
+`I've tucked in a photo of our family — we'd rather you see the people behind the letter than just read a name. You can reach us anytime at ${phone} or ${email}. Thank you for taking the time to read this.\n\nWarm regards,\n${SENDER.names}\n\n`+
+`P.S. If selling isn't for you but a neighbor or friend nearby has ever mentioned wanting to part with their land, we'd be so grateful for a name or an introduction.`;
 }
-
-let activeOwner="";
-function openLetter(x,id){
-  const me=store.me;
-  $("#meName").value=me.name||""; $("#mePhone").value=me.phone||""; $("#meEmail").value=me.email||"";
+let activeX=null;
+function openLetter(x){ const me=store_me(); $("#mePhone").value=me.phone||""; $("#meEmail").value=me.email||"";
   $("#letterFor").textContent=`${x.a.Owner||"Owner"} · ${x.s.acres.toFixed(1)} ac · ${(x.a.MunicipalityDescription||"")}`;
-  activeOwner=x.a;
-  $("#letterText").value=letterBody(x.a, me);
-  $("#modal").classList.add("on");
-}
-function refreshLetter(){
-  const me={name:$("#meName").value,phone:$("#mePhone").value,email:$("#meEmail").value};
-  store.me=me; $("#letterText").value=letterBody(activeOwner, me);
-}
-["meName","mePhone","meEmail"].forEach(idn=>$("#"+idn).addEventListener("input",refreshLetter));
-
-//=====================  CSV  =====================
-function downloadCSV(){
-  if(!rows.length){ toast("Run a search first"); return; }
-  const cols=["score","acres","owner","municipality","absentee","raw_land","tier","tenure_years",
-    "assessed_value","assessed_per_acre","last_sale_price","school","parcel_id","owner_mailing","physical_address"];
-  const lines=[cols.join(",")];
-  rows.forEach(({a,s})=>{
-    const r=[s.total,s.acres.toFixed(2),a.Owner,a.MunicipalityDescription,s.absentee?"YES":"no",
-      s.raw?"YES":"no",s.tier,(s.tenure??""),a.AssessedValue||0,s.assessedPerAcre,a.LastSalePrice||0,
-      a.SchoolDescription,(a.PIN||a.Parid||a.TaxMapNumber||""),
-      [a.Address1,a.CityStateZip].filter(Boolean).join(" "),a.PhysicalAddress||""];
-    lines.push(r.map(v=>`"${String(v??"").replace(/"/g,'""')}"`).join(","));
-  });
-  const blob=new Blob([lines.join("\n")],{type:"text/csv"});
-  const u=URL.createObjectURL(blob); const link=el("a");
-  link.href=u; link.download="land_candidates.csv"; link.click(); URL.revokeObjectURL(u);
+  activeX=x; $("#letterText").value=letterBody(x.a,me); $("#modal").classList.add("on"); }
+function store_me(){ try{return JSON.parse(localStorage.getItem("lf_me"))||{}}catch{return {}} }
+function refreshLetter(){ const me={phone:$("#mePhone").value,email:$("#meEmail").value}; localStorage.setItem("lf_me",JSON.stringify(me)); if(activeX) $("#letterText").value=letterBody(activeX.a,me); }
+["mePhone","meEmail"].forEach(idn=>$("#"+idn).addEventListener("input",refreshLetter));
+function printLetter(){
+  if(!activeX) return; const a=activeX.a;
+  const letterHTML=esc($("#letterText").value).replace(/\n/g,"<br>");
+  const ret=SENDER.returnAddress.map(esc).join("<br>");
+  const recip=[titlePlain(a.Owner||""),titleCase(a.Address1||""),titleCase(a.Address2||""),titleCase(a.CityStateZip||"")].filter(Boolean).map(esc).join("<br>");
+  const w=window.open("","_blank"); if(!w){ toast("Allow pop-ups to print"); return; }
+  w.document.write(`<!doctype html><html><head><meta charset="utf-8"><title>Letter</title><style>@page{size:letter;margin:1in}body{font-family:Georgia,'Times New Roman',serif;color:#111;font-size:12pt;line-height:1.55}.page{page-break-after:always}.page:last-child{page-break-after:auto}.addr{position:relative;height:9in}.addr .ret{position:absolute;top:0;left:0;font-size:11pt}.addr .rec{position:absolute;top:3.6in;left:1.1in;font-size:13pt;line-height:1.45}.hint{font-size:9pt;color:#888}.bar{position:fixed;top:8px;right:8px}@media print{.bar,.hint{display:none}}button{font:inherit;padding:8px 14px;cursor:pointer}</style></head><body><div class="bar"><button onclick="window.print()">Print</button></div><div class="page">${letterHTML}</div><div class="page addr"><div class="ret">${ret}</div><div class="rec">${recip}</div><div class="hint" style="position:absolute;bottom:0;left:0">Page 2 — fold in thirds for a #10 window envelope, or use to address one.</div></div><scr`+`ipt>setTimeout(function(){try{window.print()}catch(e){}},500)<\/scr`+`ipt></body></html>`);
+  w.document.close();
 }
 
-//=====================  UI WIRING  =====================
-function toast(m){ const t=$("#toast"); t.textContent=m; t.classList.add("on");
-  clearTimeout(t._t); t._t=setTimeout(()=>t.classList.remove("on"),1900); }
+//=====================  OUTREACH VIEW  =====================
+function openOutreach(){
+  const ids=Object.keys(trackMap); const list=$("#olist"); list.innerHTML="";
+  $("#outSub").textContent=ids.length?`${ids.length} tracked propert${ids.length===1?"y":"ies"}${syncState==="connected"?" · synced":""}.`:"Nothing tracked yet. Set a stage on any property to start.";
+  const order={interested:0,replied:1,sent:2,dead:3};
+  ids.map(id=>trackMap[id]).sort((a,b)=>(order[a.status]??9)-(order[b.status]??9)||(b.updated_at||"").localeCompare(a.updated_at||""))
+    .forEach(r=>{ const it=el("div","oitem");
+      const d=r.updated_at?new Date(r.updated_at).toLocaleDateString("en-US",{month:"short",day:"numeric"}):"";
+      it.innerHTML=`<div class="top"><div class="own">${esc(titlePlain(r.owner||"Unknown"))}</div><span class="ostat">${esc(r.status||"—")}</span></div>`+
+        `<div class="meta">${esc((r.municipality||"").replace(" TOWNSHIP"," Twp"))}${r.acres?" · "+(+r.acres).toFixed(1)+" ac":""}${d?" · "+d:""}</div>`+
+        (r.notes?`<div class="nt">${esc(r.notes)}</div>`:``);
+      list.appendChild(it); });
+  $("#outreachModal").classList.add("on");
+}
 
-$("#find").onclick=run;
-$("#selPrimary").onclick=selectPrimary;
-$("#selNone").onclick=selectNone;
+//=====================  UI  =====================
+function toast(m){ const t=$("#toast"); t.textContent=m; t.classList.add("on"); clearTimeout(t._t); t._t=setTimeout(()=>t.classList.remove("on"),1900); }
+$("#find").onclick=run; $("#selPrimary").onclick=selectPrimary; $("#selNone").onclick=selectNone;
 $("#closeSheet").onclick=()=>$("#modal").classList.remove("on");
 $("#modal").onclick=e=>{ if(e.target===$("#modal")) $("#modal").classList.remove("on"); };
-$("#copyLetter").onclick=async()=>{ try{await navigator.clipboard.writeText($("#letterText").value);
-  toast("Letter copied");}catch{ $("#letterText").select(); document.execCommand("copy"); toast("Letter copied"); } };
-$("#shareLetter").onclick=async()=>{ const text=$("#letterText").value;
-  if(navigator.share){ try{await navigator.share({text});}catch{} }
-  else { try{await navigator.clipboard.writeText(text); toast("Copied (sharing not supported here)");}catch{toast("Couldn't share");} } };
+$("#printLetter").onclick=printLetter;
+$("#copyLetter").onclick=async()=>{ try{await navigator.clipboard.writeText($("#letterText").value); toast("Letter copied");}catch{ $("#letterText").select(); document.execCommand("copy"); toast("Letter copied"); } };
+$("#shareLetter").onclick=async()=>{ const text=$("#letterText").value; if(navigator.share){ try{await navigator.share({text});}catch{} } else { try{await navigator.clipboard.writeText(text); toast("Copied");}catch{toast("Couldn't share");} } };
 
-loadMunis();
+$("#openOutreach").onclick=openOutreach;
+$("#closeOutreach").onclick=()=>$("#outreachModal").classList.remove("on");
+$("#outreachModal").onclick=e=>{ if(e.target===$("#outreachModal")) $("#outreachModal").classList.remove("on"); };
+$("#openSync").onclick=()=>{ const c=sbCfg(); $("#sbUrl").value=c?c.url:""; $("#sbKey").value=c?c.key:""; updateSyncUI(); $("#syncModal").classList.add("on"); };
+$("#closeSync").onclick=()=>$("#syncModal").classList.remove("on");
+$("#syncModal").onclick=e=>{ if(e.target===$("#syncModal")) $("#syncModal").classList.remove("on"); };
+$("#saveSync").onclick=async()=>{ const u=$("#sbUrl").value.trim(), k=$("#sbKey").value.trim();
+  if(!u||!k){ toast("Enter both URL and key"); return; } localStorage.setItem("lf_sb_url",u); localStorage.setItem("lf_sb_key",k);
+  await loadTracking(); toast(syncState==="connected"?"Synced":"Saved — couldn't reach Supabase"); };
+$("#clearSync").onclick=async()=>{ localStorage.removeItem("lf_sb_url"); localStorage.removeItem("lf_sb_key"); syncState="local"; await loadTracking(); toast("Using this device only"); };
+
+loadMunis(); loadTracking(); loadWater();
 </script>
 </body>
 </html>
